@@ -71,7 +71,7 @@ class Card
             return $result;
     }
 
-    public function compareValueThenSuit($result) {
+    public function compareValueThenSuit($card) {
         $result = $this->compareValue($card);
         if ($result === 0) // if same value was found, we check for suit
             return $this->compareSuit($card);

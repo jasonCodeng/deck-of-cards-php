@@ -23,11 +23,12 @@ class Hand
         for ($i = 1; $i < $length; $i++) {
             $temp = $this->hand[$i];
             $j = $i;
-            while($j > 0 && ($temp->compareSuit($this->hand[$j-1]) < 0)) {
+            while($j > 0 && ($temp->compareSuitThenValue($this->hand[$j-1]) < 0)) {
                 $this->swap($j, $j-1);
                 $j--;
             }
         }
+
     }
 
     public function sortByValue() {
@@ -35,7 +36,7 @@ class Hand
         for ($i = 1; $i < $length; $i++) {
             $temp = $this->hand[$i];
             $j = $i;
-            while($j > 0 && ($temp->compareValue($this->hand[$j-1]) < 0)) {
+            while($j > 0 && ($temp->compareValueThenSuit($this->hand[$j-1]) < 0)) {
                 $this->swap($j, $j-1);
                 $j--;
             }

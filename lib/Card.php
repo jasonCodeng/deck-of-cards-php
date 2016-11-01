@@ -37,19 +37,30 @@ class Card
         echo $this->value.' of '.$this->suit;
     }
 
-    public function compareSuit($card) {
+    public function compareSuitThenValue($card) {
         $currentSuitKey = array_search($this->suit, self::$suits);
         $otherSuitKey = array_search($card->suit, self::$suits);
 
+        // first we check for same suit
         if($currentSuitKey < $otherSuitKey)
             return -1;
         else if ($currentSuitKey > $otherSuitKey)
             return 1;
-        else
-            return 0;
+        else {
+            // same suit found, we then check for value
+            $currentValueKey = array_search($this->value, self::$values);
+            $otherValueKey = array_search($card->value, self::$values);
+
+            if($currentValueKey < $otherValueKey)
+                return -1;
+            else if ($currentValueKey > $otherValueKey)
+                return 1;
+            else
+                return 0; // this should never return 0 since no card has same value and suit
+        }
     }
 
-    public function compareValue($card) {
+    public function compareValueThenSuit($card) {
         $currentValueKey = array_search($this->value, self::$values);
         $otherValueKey = array_search($card->value, self::$values);
 
@@ -57,8 +68,18 @@ class Card
             return -1;
         else if ($currentValueKey > $otherValueKey)
             return 1;
-        else
-            return 0;
+            else {
+                // same value found, we then check for suit
+                $currentSuitKey = array_search($this->suit, self::$suits);
+                $otherSuitKey = array_search($card->suit, self::$suits);
+
+                if($currentSuitKey < $otherSuitKey)
+                    return -1;
+                else if ($currentSuitKey > $otherSuitKey)
+                    return 1;
+                else
+                    return 0; // this should never return 0 since no card has same value and suit
+            }
     }
 }
 

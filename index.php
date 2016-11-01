@@ -15,7 +15,7 @@ for($i = 0; $i <= 7; $i++) {
 }
 
 $Hand->display();
-$Hand->sortByValue();
+$Hand->sortBySuit();
 $Hand->display();
 
 ?>

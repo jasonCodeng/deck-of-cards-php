@@ -1,4 +1,4 @@
-<<?php
+<?php
 
 require_once('lib/Deck.php');
 require_once('lib/Card.php');

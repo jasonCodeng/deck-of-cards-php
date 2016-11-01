@@ -25,7 +25,7 @@ class Deck
 
     public function dealOne() {
         if (empty($this->deck)) {
-            throw new Exception('Deck is empty');
+            throw new Exception('Deck is empty.');
         }
         $dealedCard = array_shift($this->deck);
         array_push($this->dealtCards, $dealedCard);
@@ -34,11 +34,17 @@ class Deck
 
     public function display() {
         foreach ($this->deck as $card) {
-            echo '['.$card->value.' of '.$card->suit.']'.', ';
+            echo '['.$card->value.' of '.$card->suit.']'.'.';
         }
+        echo PHP_EOL;
 
-        foreach ($this->dealtCards as $card) {
-            echo '['.$card->value.$card->suit.']'.', ';
+        if (empty($this->dealtCards)) {
+            echo 'There are no dealt Cards'.PHP_EOL;
+        }
+        else {
+            foreach ($this->dealtCards as $card) {
+                echo '['.$card->value.$card->suit.']'.'.'.PHP_EOL;
+            }
         }
     }
 
@@ -51,26 +57,6 @@ class Deck
             $this->deck[$rand] = $temp;
         }
     }
-
 }
-
-$Deck = new Deck();
-$Deck->shuffle();
-$Deck->display();
-
-$Hand = new Hand();
-$Hand->addCard($Deck->dealOne());
-$Hand->addCard($Deck->dealOne());
-$Hand->addCard($Deck->dealOne());
-$Hand->addCard($Deck->dealOne());
-$Hand->addCard($Deck->dealOne());
-$Hand->addCard($Deck->dealOne());
-$Hand->addCard($Deck->dealOne());
-$Hand->addCard($Deck->dealOne());
-
-$Hand->display();
-$Hand->sortByValue();
-
-$Hand->display();
 
 ?>

@@ -6,16 +6,17 @@ require_once('lib/Hand.php');
 
 $Deck = new Deck();
 $Deck->shuffle();
-$Deck->display();
 
 $Hand = new Hand();
+$Hand2 = new Hand();
 
-for($i = 0; $i <= 50; $i++) {
+for($i = 0; $i <= 6; $i++) {
     $Hand->addCard($Deck->dealOne());
 }
 
-$Hand->display();
+//$Hand->display();
 $Hand->sortByValue();
-$Hand->display();
+
+echo $Hand->hasStraight(6,true);
 
 ?>

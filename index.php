@@ -10,7 +10,7 @@ $Deck->display();
 
 $Hand = new Hand();
 
-for($i = 0; $i <= 7; $i++) {
+for($i = 0; $i <= 6; $i++) {
     $Hand->addCard($Deck->dealOne());
 }
 

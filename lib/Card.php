@@ -68,18 +68,18 @@ class Card
             return -1;
         else if ($currentValueKey > $otherValueKey)
             return 1;
-            else {
-                // same value found, we then check for suit
-                $currentSuitKey = array_search($this->suit, self::$suits);
-                $otherSuitKey = array_search($card->suit, self::$suits);
+        else {
+            // same value found, we then check for suit
+            $currentSuitKey = array_search($this->suit, self::$suits);
+            $otherSuitKey = array_search($card->suit, self::$suits);
 
-                if($currentSuitKey < $otherSuitKey)
-                    return -1;
-                else if ($currentSuitKey > $otherSuitKey)
-                    return 1;
-                else
-                    return 0; // this should never return 0 since no card has same value and suit
-            }
+            if($currentSuitKey < $otherSuitKey)
+                return -1;
+            else if ($currentSuitKey > $otherSuitKey)
+                return 1;
+            else
+                return 0; // this should never return 0 since no card has same value and suit
+        }
     }
 }
 

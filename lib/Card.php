@@ -37,49 +37,46 @@ class Card
         echo $this->value.' of '.$this->suit;
     }
 
-    public function compareSuitThenValue($card) {
+    public function compareSuit($card) {
         $currentSuitKey = array_search($this->suit, self::$suits);
         $otherSuitKey = array_search($card->suit, self::$suits);
 
-        // first we check for same suit
-        if($currentSuitKey < $otherSuitKey)
+        // compare suits for current card and other card
+        if ($currentSuitKey < $otherSuitKey)
             return -1;
         else if ($currentSuitKey > $otherSuitKey)
             return 1;
-        else {
-            // same suit found, we then check for value
-            $currentValueKey = array_search($this->value, self::$values);
-            $otherValueKey = array_search($card->value, self::$values);
-
-            if($currentValueKey < $otherValueKey)
-                return -1;
-            else if ($currentValueKey > $otherValueKey)
-                return 1;
-            else
-                return 0; // this should never return 0 since no card has same value and suit
-        }
+        else
+            return 0;
     }
 
-    public function compareValueThenSuit($card) {
+    public function compareValue($card) {
         $currentValueKey = array_search($this->value, self::$values);
         $otherValueKey = array_search($card->value, self::$values);
 
-        if($currentValueKey < $otherValueKey)
+        // compare values for current card and other card
+        if ($currentValueKey < $otherValueKey)
             return -1;
         else if ($currentValueKey > $otherValueKey)
             return 1;
-        else {
-            // same value found, we then check for suit
-            $currentSuitKey = array_search($this->suit, self::$suits);
-            $otherSuitKey = array_search($card->suit, self::$suits);
+        else
+            return 0;
+    }
 
-            if($currentSuitKey < $otherSuitKey)
-                return -1;
-            else if ($currentSuitKey > $otherSuitKey)
-                return 1;
-            else
-                return 0; // this should never return 0 since no card has same value and suit
-        }
+    public function compareSuitThenValue($card) {
+        $result = $this->compareSuit($card);
+        if ($result === 0) // if same suit was found, we check for value
+            return $this->compareValue($card);
+        else
+            return $result;
+    }
+
+    public function compareValueThenSuit($result) {
+        $result = $this->compareValue($card);
+        if ($result === 0) // if same value was found, we check for suit
+            return $this->compareSuit($card);
+        else
+            return $result;
     }
 }
 
